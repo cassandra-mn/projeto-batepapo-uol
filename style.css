@@ -3,6 +3,8 @@
     font-family: Roboto;
 }
 
+/* Tela inicial */ 
+
 .tela-inicial {
     width: 100vw;
     height: 100vh;
@@ -58,6 +60,46 @@
     background-color: #bbbbbb;
 }
 
+/* Tela aguardando */
+
+.tela-aguardando {
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.tela-aguardando img {
+    width: 130px;
+    height: 92px;
+    margin: 100px 0;
+}
+
+.tela-aguardando .loading img {
+    margin: 0;
+    width: 100px;
+    height: 100px;
+    animation: rotating 3s infinite; 
+}
+
+@keyframes rotating {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+.tela-aguardando p {
+    margin-top: 20px;
+    font-size: 20px;
+    font-family: Roboto;
+}
+
+/* Navegação */
+
 nav {
     left: 0px;
     top: 0px;
@@ -83,10 +125,14 @@ nav ion-icon {
     position: absolute;
 }
 
+/* Main */
+
 main {
     height: 100vh;
     background: #E5E5E5;
 }
+
+/* Footer */
 
 footer {
     left: 0px;
