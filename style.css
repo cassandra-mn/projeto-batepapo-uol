@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+
+.tela-inicial {
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.tela-inicial img {
+    width: 130px;
+    height: 92px;
+    margin: 100px 0;
+}
+
+.tela-inicial input {
+    width: 261px;
+    height: 54px;
+    font-size: 18px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #D7D7D7;
+    color: #AEAEAE;
+    background: #FFFFFF;
+}
+
+.tela-inicial input:focus {
+    outline: 0;
+    color: #000000;
+}
+
+.tela-inicial button {
+    width: 109px;
+    height: 45px;
+    margin-top: 20px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #696969;
+    background: #E7E7E7;
+    border: none;
+    border-radius: 9px;
+}
+
+.tela-inicial button:hover {
+    cursor: pointer;
+    background-color: #bbbbbb;
+}
+
+nav {
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 80px;
+    position: fixed;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+nav img {
+    left: 22px;
+    top: 16px;
+    width: 75px;
+    height: 53px;
+    position: absolute;
+}
+
+nav ion-icon {
+    top: 20px;
+    right: 22px;
+    font-size: 40px;
+    position: absolute;
+}
+
+main {
+    height: 100vh;
+    background: #E5E5E5;
+}
+
+footer {
+    left: 0px;
+    bottom: 0px;
+    width: 100vw;
+    height: 80px;
+    position: fixed;
+    background: #FFFFFF;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+}
+
+footer input {
+    width: 145px;
+    height: 30px;
+    margin-top: 25px;
+    margin-left: 17px;
+    font-size: 18px;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    border: none;
+    color: #000000;
+}
+
+footer input:focus {
+    width: 80%;
+    outline: 0;
+    font-style: normal;
+}
+
+footer ion-icon {
+    right: 27px;
+    bottom: 27px;
+    font-size: 26px;
+    position: absolute;
+}
