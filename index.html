@@ -23,11 +23,11 @@
 
     <nav>
         <img src="images/logo.svg" alt="logo">
-        <ion-icon name="people"></ion-icon>
+        <ion-icon name="people" onclick="barraLateral()"></ion-icon>
     </nav>
 
     <main>
-
+        <div class="container"></div>
     </main>
 
     <footer>
@@ -35,8 +35,40 @@
         <ion-icon name="paper-plane-outline"></ion-icon>
     </footer>
 
-    <script src="script.js"></script>
+    <div class="fundo-menu escondido" onclick="esconderMenu()">
+        <div class="menu escondido">
+            <div class="nav">
+                <h1>Escolha um contato</br>para enviar mensagem:</h1>
+            </div>
+            <div class="infos">
+                <ion-icon name="people"></ion-icon>
+                <p>Todos</p>
+            </div>
+            <div class="infos">
+                <ion-icon name="person-circle"></ion-icon>
+                <p>Maria</p>
+            </div>
+            <div class="infos">
+                <ion-icon name="person-circle"></ion-icon>
+                <p>João</p>
+            </div>
+            <div class="nav visible">
+                <h1>Escolha a visibilidade:</h1>
+            </div>
+            <div class="infos">
+                <ion-icon name="lock-open"></ion-icon>
+                <p>Público</p>
+            </div>
+            <div class="infos">
+                <ion-icon name="lock-closed"></ion-icon>
+                <p>Reservadamente</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
