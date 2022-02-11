@@ -1,4 +1,6 @@
+const usuarios = document.querySelector(".usuarios");
 let nomeUsuario = { name: "" };
+let users = [];
 
 // Entrar na sala
 
@@ -19,6 +21,22 @@ function erroLogin(erro) {
     nomeUsuario.name = "";
     const mensagemErro = document.querySelector(".mensagem-erro");
     mensagemErro.classList.remove("escondido");
+}
+
+// Buscar mensagem do servidor
+
+function recarregarMensagens() {
+    let carregarMensagens = axios.get("https://mock-api.driven.com.br/api/v4/uol/messages");
+    carregarMensagens.then(buscarDados).catch(error);
+}
+
+function buscarDados(resposta) {
+    const dados = resposta.data;
+    imprimirMensagens(dados);
+}
+
+function error() {
+    console.log("Erro");
 }
 
 // Tela aguardando
@@ -42,22 +60,6 @@ function aguardando() {
     telaAguardando.innerHTML = "";
 }
 
-// Buscar mensagem do servidor
-
-function recarregarMensagens() {
-    let carregarMensagens = axios.get("https://mock-api.driven.com.br/api/v4/uol/messages");
-    carregarMensagens.then(buscarDados).catch(error);
-}
-
-function buscarDados(resposta) {
-    const dados = resposta.data;
-    imprimirMensagens(dados);
-}
-
-function error() {
-    console.log("Erro");
-}
-
 // Imprimir mensagens na tela
 
 function imprimirMensagens(dados) {
@@ -72,8 +74,6 @@ function imprimirMensagens(dados) {
         else {
             mensagemPrivada(mensagem, dados[i]);
         }
-        // scrollarAuto(i);
-        // let scroll = mensagemScroll[i];
     }
     const elementoScroll = document.querySelector(".container").lastElementChild;
     elementoScroll.scrollIntoView();
@@ -111,17 +111,32 @@ function mensagemPrivada(mensagem, dados) {
 // Barra lateral 
 
 function barraLateral() {
-    const fundoMenu = document.querySelector(".fundo-menu");
-    fundoMenu.classList.remove("escondido");
-    const menu = document.querySelector(".menu");
-    menu.classList.remove("escondido");
+    usuarios.parentNode.classList.remove("escondido");
+    usuarios.parentNode.parentNode.classList.remove("escondido");
+    
+    const listaParticipantes = axios.get("https://mock-api.driven.com.br/api/v4/uol/participants");
+    listaParticipantes.then(listarUsuarios);
+}
+
+function listarUsuarios(resposta) {
+    users = resposta.data;
+    console.log(users);
+
+    for (let i = 0; i < users.length; i++) {
+        let usuario = users[i].name;
+        console.log(usuario);
+        usuarios.innerHTML += `
+        <div class="infos">
+            <ion-icon name="person-circle"></ion-icon>
+            <p>${usuario}</p>
+        </div> `
+    }
 }
 
 function esconderMenu() {
-    const fundoMenu = document.querySelector(".fundo-menu");
-    fundoMenu.classList.add("escondido");
     const menu = document.querySelector(".menu");
     menu.classList.add("escondido");
+    menu.parentNode.classList.add("escondido");
 }
 
 // Enviar mensagem para o servidor

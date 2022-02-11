@@ -150,6 +150,7 @@ nav ion-icon {
     right: 0;
     width: 259px;
     height: 100vh;
+    overflow: scroll;
     font-family: Roboto;
     position: fixed;
     background: #FFFFFF;
@@ -199,7 +200,7 @@ main {
 
 main .container {
     padding: 26px 0;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 main .mensagem {
