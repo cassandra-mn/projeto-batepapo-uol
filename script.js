@@ -1,5 +1,6 @@
 const usuarios = document.querySelector(".usuarios");
 const conteudoMensagem = document.querySelector(".conteudo-mensagem");
+const fundoMenu = document.querySelector(".fundo-menu");
 
 let nomeUsuario = { name: "" };
 let users = [];
@@ -114,7 +115,7 @@ function mensagemPrivada(mensagem, dados) {
 
 function barraLateral() {
     usuarios.parentNode.classList.remove("escondido");
-    usuarios.parentNode.parentNode.classList.remove("escondido");
+    fundoMenu.classList.remove("escondido");
     
     const listaParticipantes = axios.get("https://mock-api.driven.com.br/api/v4/uol/participants");
     listaParticipantes.then(listarUsuarios);
@@ -122,7 +123,6 @@ function barraLateral() {
 
 function listarUsuarios(resposta) {
     users = resposta.data;
-    console.log(users);
 
     for (let i = 0; i < users.length; i++) {
         let usuario = users[i].name;
@@ -130,15 +130,20 @@ function listarUsuarios(resposta) {
         usuarios.innerHTML += `
         <div class="infos">
             <ion-icon name="person-circle"></ion-icon>
-            <p>${usuario}</p>
+            <p onclick = "selecionar(this)">${usuario}</p>
         </div> `
     }
 }
 
 function esconderMenu() {
     const menu = document.querySelector(".menu");
-    menu.classList.add("escondido");
-    menu.parentNode.classList.add("escondido");
+    menu.classList.add("escondido");  
+    fundoMenu.classList.add("escondido");
+}   
+
+function selecionar(selecionado) {
+    let escolhido = selecionado.parentNode.classList.add("selecionado");
+    escolhido.classList.add("selecionado");
 }
 
 // Enviar mensagem para o servidor
@@ -154,7 +159,6 @@ function mandarMensagem() {
     const request = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", enviarMensagem);
     request.then(mensagemInput).catch(erroNaMensagem);
 }
-
 
 function mensagemInput(resposta) {
     conteudoMensagem.value = "";

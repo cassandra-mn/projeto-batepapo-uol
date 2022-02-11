@@ -37,6 +37,7 @@
     </footer>
 
     <div class="fundo-menu escondido" onclick="esconderMenu()">
+    </div>
         <div class="menu escondido">
 
             <div class="nav">
@@ -46,7 +47,7 @@
             <div class="usuarios">
                 <div class="infos">
                     <ion-icon name="people"></ion-icon>
-                    <p>Todos</p>
+                    <p onclick = "selecionar(this)">Todos</p>
                 </div>
             </div>
                 
@@ -54,16 +55,17 @@
                 <h1>Escolha a visibilidade:</h1>
             </div>
 
-            <div class="infos">
-                <ion-icon name="lock-open"></ion-icon>
-                <p>Público</p>
-            </div>
-            <div class="infos">
-                <ion-icon name="lock-closed"></ion-icon>
-                <p>Reservadamente</p>
+            <div class="visibilidade">
+                <div class="infos">
+                    <ion-icon name="lock-open"></ion-icon>
+                    <p onclick = "selecionar(this)">Público</p>
+                </div>
+                <div class="infos">
+                    <ion-icon name="lock-closed"></ion-icon>
+                    <p onclick = "selecionar(this)">Reservadamente</p>
+                </div>
             </div>
         </div>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>

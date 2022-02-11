@@ -234,6 +234,10 @@ main .mensagem {
     font-weight: bold;
 }
 
+.selecionado {
+    background-color: #696969;
+}
+
 /* Footer */
 
 footer {
