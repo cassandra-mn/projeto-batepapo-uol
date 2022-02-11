@@ -1,7 +1,30 @@
-// Tela inicial 
+let nomeUsuario = { name: "" };
 
-function entrar(botao) {
-    const div = botao.parentNode;
+// Entrar na sala
+
+function entrarNaSala(botao) {
+    nomeUsuario.name = document.querySelector(".tela-inicial input").value;
+    const requisicao = axios.post("https://mock-api.driven.com.br/api/v4/uol/participants", nomeUsuario);
+    requisicao.then(sucessoLogin).catch(erroLogin);
+    setInterval(recarregarPagina, 3000);
+    setInterval(manterConexao, 5000);
+}
+
+function sucessoLogin(resposta) {
+    segundaTela();
+    recarregarMensagens();
+}
+
+function erroLogin(erro) {
+    nomeUsuario.name = "";
+    const mensagemErro = document.querySelector(".mensagem-erro");
+    mensagemErro.classList.remove("escondido");
+}
+
+// Tela aguardando
+
+function segundaTela() {
+    const div = document.querySelector(".tela-inicial");
     div.innerHTML = `
     <div class="tela-aguardando">
         <img src="images/logo.svg" alt="logo">
@@ -11,8 +34,6 @@ function entrar(botao) {
     setTimeout(aguardando, 2000);
 }
 
-// Tela aguardando 
-
 function aguardando() {
     const telaInicial = document.querySelector(".tela-inicial");
     telaInicial.classList.remove("tela-inicial");
@@ -21,44 +42,41 @@ function aguardando() {
     telaAguardando.innerHTML = "";
 }
 
-// Barra lateral 
-
-function barraLateral() {
-    const fundoMenu = document.querySelector(".fundo-menu");
-    fundoMenu.classList.remove("escondido");
-    const menu = document.querySelector(".menu");
-    menu.classList.remove("escondido");
-}
-
-function esconderMenu() {
-    const fundoMenu = document.querySelector(".fundo-menu");
-    fundoMenu.classList.add("escondido");
-    const menu = document.querySelector(".menu");
-    menu.classList.add("escondido");
-}
-
 // Buscar mensagem do servidor
 
+function recarregarMensagens() {
+    let carregarMensagens = axios.get("https://mock-api.driven.com.br/api/v4/uol/messages");
+    carregarMensagens.then(buscarDados).catch(error);
+}
+
 function buscarDados(resposta) {
-    let dados = resposta.data;
+    const dados = resposta.data;
     imprimirMensagens(dados);
+}
+
+function error() {
+    console.log("Erro");
 }
 
 // Imprimir mensagens na tela
 
 function imprimirMensagens(dados) {
     const mensagem = document.querySelector(".container");
-    for (let i = 0; i < dados.length; i++) {   
+    for (let i = 0; i < dados.length; i++) {
         if (dados[i].type === "status") {
             mensagemStatus(mensagem, dados[i]);
-        }   
+        }
         else if (dados[i].type === "message") {
             mensagemPublica(mensagem, dados[i]);
         }
         else {
             mensagemPrivada(mensagem, dados[i]);
         }
+        // scrollarAuto(i);
+        // let scroll = mensagemScroll[i];
     }
+    const elementoScroll = document.querySelector(".container").lastElementChild;
+    elementoScroll.scrollIntoView();
 }
 
 function mensagemStatus(mensagem, dados) {
@@ -90,5 +108,56 @@ function mensagemPrivada(mensagem, dados) {
     </div>`
 }
 
-const promise = axios.get("https://mock-api.driven.com.br/api/v4/uol/messages");
-promise.then(buscarDados);
+// Barra lateral 
+
+function barraLateral() {
+    const fundoMenu = document.querySelector(".fundo-menu");
+    fundoMenu.classList.remove("escondido");
+    const menu = document.querySelector(".menu");
+    menu.classList.remove("escondido");
+}
+
+function esconderMenu() {
+    const fundoMenu = document.querySelector(".fundo-menu");
+    fundoMenu.classList.add("escondido");
+    const menu = document.querySelector(".menu");
+    menu.classList.add("escondido");
+}
+
+// Enviar mensagem para o servidor
+
+function mandarMensagem() {
+    let enviarMensagem = {
+        from: "usuário",
+        to: "Todos",
+        text: "teste",
+        type: "message" // ou "private_message" para o bônus
+    }
+
+    const request = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", enviarMensagem);
+    request.then(colocarMensagemNaTela);
+    request.catch(erroNaMensagem);
+    
+    function colocarMensagemNaTela(resposta) {
+        console.log(resposta);
+        alert("Ok");
+    }
+    
+    function erroNaMensagem(erro) {
+        console.log(erro);
+        alert("Erro");
+    }
+}
+    
+// Manter conectado
+
+function manterConexao() {
+    const manterConectado = axios.post("https://mock-api.driven.com.br/api/v4/uol/status", nomeUsuario);
+    manterConectado.then();
+}
+
+// Recarregar página
+
+function recarregarPagina() {
+    recarregarMensagens();
+}
