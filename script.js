@@ -1,4 +1,6 @@
 const usuarios = document.querySelector(".usuarios");
+const conteudoMensagem = document.querySelector(".conteudo-mensagem");
+
 let nomeUsuario = { name: "" };
 let users = [];
 
@@ -143,25 +145,22 @@ function esconderMenu() {
 
 function mandarMensagem() {
     let enviarMensagem = {
-        from: "usuário",
+        from: nomeUsuario.name,
         to: "Todos",
-        text: "teste",
-        type: "message" // ou "private_message" para o bônus
+        text: conteudoMensagem.value,
+        type: "message" 
     }
 
     const request = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", enviarMensagem);
-    request.then(colocarMensagemNaTela);
-    request.catch(erroNaMensagem);
-    
-    function colocarMensagemNaTela(resposta) {
-        console.log(resposta);
-        alert("Ok");
-    }
-    
-    function erroNaMensagem(erro) {
-        console.log(erro);
-        alert("Erro");
-    }
+    request.then(colocarMensagemNaTela).catch(erroNaMensagem);
+}
+
+function colocarMensagemNaTela(resposta) {
+    conteudoMensagem.value = "";
+}
+
+function erroNaMensagem(erro) {
+    window.location.reload();
 }
     
 // Manter conectado
