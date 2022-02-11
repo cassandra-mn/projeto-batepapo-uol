@@ -51,7 +51,7 @@ function segundaTela() {
         <div class="loading"><img src="images/load.png" alt="loading"></div>
         <p>Entrando...</p>
     </div>`
-    setTimeout(aguardando, 2000);
+    setTimeout(aguardando, 1500);
 }
 
 function aguardando() {
@@ -152,16 +152,26 @@ function mandarMensagem() {
     }
 
     const request = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", enviarMensagem);
-    request.then(colocarMensagemNaTela).catch(erroNaMensagem);
+    request.then(mensagemInput).catch(erroNaMensagem);
 }
 
-function colocarMensagemNaTela(resposta) {
+
+function mensagemInput(resposta) {
     conteudoMensagem.value = "";
 }
 
 function erroNaMensagem(erro) {
     window.location.reload();
 }
+
+// Envio com enter
+
+conteudoMensagem.addEventListener('keyup', function(e) {
+    let key = e.keyCode;
+    if (key == 13) { 
+        mandarMensagem();
+    }
+});
     
 // Manter conectado
 

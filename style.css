@@ -150,8 +150,8 @@ nav ion-icon {
     right: 0;
     width: 259px;
     height: 100vh;
-    overflow: scroll;
     font-family: Roboto;
+    overflow: scroll;
     position: fixed;
     background: #FFFFFF;
 }
