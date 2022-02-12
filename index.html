@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Bate Papo UOL</title>
 
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700&family=Righteous&family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700&family=Righteous&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -32,13 +31,17 @@
     </main>
 
     <footer>
-        <input class="conteudo-mensagem" type="text" placeholder="Escreva aqui...">
+        <div class="separar">
+            <input class="conteudo-mensagem" type="text" placeholder="Escreva aqui...">
+            <p>Escolha um contato e a visibilidade</p>
+        </div>
         <ion-icon name="paper-plane-outline" onclick="mandarMensagem()"></ion-icon>
     </footer>
 
     <div class="fundo-menu escondido" onclick="esconderMenu()">
     </div>
-        <div class="menu escondido">
+    
+    <div class="menu escondido">
 
             <div class="nav">
                 <h1>Escolha um contato</br>para enviar mensagem:</h1>
@@ -68,7 +71,7 @@
                     <ion-icon class="check visible escondido" name="checkmark"></ion-icon>
                 </div>
             </div>
-        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>

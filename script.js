@@ -155,12 +155,18 @@ function selecionarVisibilidade(selecionado) {
     desmarcar(".visible");
     const icon = selecionado.querySelector(".check");
     icon.classList.remove("escondido"); 
-    const teste = icon.parentNode.querySelector("p").innerText;
-    if (teste === "Público") {
+    const text = icon.parentNode.querySelector("p").innerText;
+    if (text === "Público") {
         tipoMensagem.type = "message";
-    } else if (teste === "Reservadamente") {
+    } else if (text === "Reservadamente") {
         tipoMensagem.type = "private_message";
     }
+    mudarMensagemDoInput(text);
+}
+
+function mudarMensagemDoInput(text) {
+    let mensagemDoInput = document.querySelector(".separar p");
+    mensagemDoInput.innerHTML = `Enviando para ${destinatario.to} (${text})`
 }
 
 function desmarcar(classe) {
@@ -174,7 +180,6 @@ function desmarcar(classe) {
 // Enviar mensagem para o servidor
 
 function mandarMensagem() {
-
     let enviarMensagem = {
         from: nomeUsuario.name,
         to: destinatario.to,
@@ -191,8 +196,7 @@ function mensagemInput(resposta) {
 }
 
 function erroNaMensagem(erro) {
-    console.log(erro);
-    // window.location.reload();
+    window.location.reload();
 }
 
 // Envio com enter
