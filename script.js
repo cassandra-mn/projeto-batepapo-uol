@@ -2,8 +2,10 @@ const usuarios = document.querySelector(".usuarios");
 const conteudoMensagem = document.querySelector(".conteudo-mensagem");
 const fundoMenu = document.querySelector(".fundo-menu");
 
-let nomeUsuario = { name: "" };
 let users = [];
+let nomeUsuario = { name: "" };
+let destinatario = { to: "" };
+let tipoMensagem = { type: "" };
 
 // Entrar na sala
 
@@ -144,14 +146,21 @@ function esconderMenu() {
 
 function selecionar(selecionado) {
     desmarcar(".users");
-    let icon = selecionado.querySelector(".check");
+    const icon = selecionado.querySelector(".check");
     icon.classList.remove("escondido");
+    destinatario.to = icon.parentNode.querySelector("p").innerText;
 }
 
 function selecionarVisibilidade(selecionado) {
     desmarcar(".visible");
-    let icon = selecionado.querySelector(".check");
-    icon.classList.remove("escondido");
+    const icon = selecionado.querySelector(".check");
+    icon.classList.remove("escondido"); 
+    const teste = icon.parentNode.querySelector("p").innerText;
+    if (teste === "Público") {
+        tipoMensagem.type = "message";
+    } else if (teste === "Reservadamente") {
+        tipoMensagem.type = "private_message";
+    }
 }
 
 function desmarcar(classe) {
@@ -165,11 +174,12 @@ function desmarcar(classe) {
 // Enviar mensagem para o servidor
 
 function mandarMensagem() {
+
     let enviarMensagem = {
         from: nomeUsuario.name,
-        to: "Todos",
+        to: destinatario.to,
         text: conteudoMensagem.value,
-        type: "message" 
+        type: tipoMensagem.type 
     }
 
     const request = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", enviarMensagem);
@@ -181,7 +191,8 @@ function mensagemInput(resposta) {
 }
 
 function erroNaMensagem(erro) {
-    window.location.reload();
+    console.log(erro);
+    // window.location.reload();
 }
 
 // Envio com enter
