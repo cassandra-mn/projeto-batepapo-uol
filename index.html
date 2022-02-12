@@ -15,12 +15,12 @@
 </head>
 
 <body>
-    <div class="tela-inicial">
+    <!-- <div class="tela-inicial">
         <img src="images/logo.svg" alt="logo">
         <input type="text" placeholder="Digite seu nome">
         <button onclick="entrarNaSala()">Entrar</button>
         <div class="mensagem-erro escondido"><p>Este nome já está em uso.<br>Tente outro nome!</p></div>
-    </div>
+    </div> -->
 
     <nav>
         <img src="images/logo.svg" alt="logo">
@@ -45,9 +45,10 @@
             </div>
 
             <div class="usuarios">
-                <div class="infos">
+                <div class="infos" onclick = "selecionar(this)">
                     <ion-icon name="people"></ion-icon>
-                    <p onclick = "selecionar(this)">Todos</p>
+                    <p>Todos</p>
+                    <ion-icon class="check users escondido" name="checkmark"></ion-icon>
                 </div>
             </div>
                 
@@ -56,13 +57,15 @@
             </div>
 
             <div class="visibilidade">
-                <div class="infos">
+                <div class="infos" onclick = "selecionarVisibilidade(this)">
                     <ion-icon name="lock-open"></ion-icon>
-                    <p onclick = "selecionar(this)">Público</p>
+                    <p>Público</p>
+                    <ion-icon class="check visible escondido" name="checkmark"></ion-icon>
                 </div>
-                <div class="infos">
+                <div class="infos" onclick = "selecionarVisibilidade(this)">
                     <ion-icon name="lock-closed"></ion-icon>
-                    <p onclick = "selecionar(this)">Reservadamente</p>
+                    <p>Reservadamente</p>
+                    <ion-icon class="check visible escondido" name="checkmark"></ion-icon>
                 </div>
             </div>
         </div>

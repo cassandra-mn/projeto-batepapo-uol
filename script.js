@@ -128,9 +128,10 @@ function listarUsuarios(resposta) {
         let usuario = users[i].name;
         console.log(usuario);
         usuarios.innerHTML += `
-        <div class="infos">
+        <div class="infos" onclick = "selecionar(this)">
             <ion-icon name="person-circle"></ion-icon>
-            <p onclick = "selecionar(this)">${usuario}</p>
+            <p>${usuario}</p>
+            <ion-icon class="check users escondido" name="checkmark"></ion-icon>
         </div> `
     }
 }
@@ -142,8 +143,23 @@ function esconderMenu() {
 }   
 
 function selecionar(selecionado) {
-    let escolhido = selecionado.parentNode.classList.add("selecionado");
-    escolhido.classList.add("selecionado");
+    desmarcar(".users");
+    let icon = selecionado.querySelector(".check");
+    icon.classList.remove("escondido");
+}
+
+function selecionarVisibilidade(selecionado) {
+    desmarcar(".visible");
+    let icon = selecionado.querySelector(".check");
+    icon.classList.remove("escondido");
+}
+
+function desmarcar(classe) {
+    const desmarca = document.querySelectorAll(classe);
+    
+    desmarca.forEach(function (parametro) {
+        parametro.classList.add("escondido");
+    });
 }
 
 // Enviar mensagem para o servidor

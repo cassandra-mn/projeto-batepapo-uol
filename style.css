@@ -186,6 +186,13 @@ nav ion-icon {
     margin: 10px;
 }
 
+.infos .check {
+    right: 20px;
+    font-size: 20px;
+    position: absolute;
+    color: #28BB25;
+}
+
 .escondido {
     display: none;
 }
@@ -204,7 +211,8 @@ main .container {
 }
 
 main .mensagem {
-    height: 40px;
+    min-height: 40px;
+    height: auto;
     padding: 0 8px;
     margin-top: 4px;
     font-size: 14px;
@@ -232,10 +240,6 @@ main .mensagem {
 .mensagem .nome {
     margin: 0 5px;
     font-weight: bold;
-}
-
-.selecionado {
-    background-color: #696969;
 }
 
 /* Footer */
