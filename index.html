@@ -16,8 +16,8 @@
 <body>
     <div class="tela-inicial">
         <img src="images/logo.svg" alt="logo">
-        <input type="text" placeholder="Digite seu nome">
-        <button onclick="entrarNaSala()">Entrar</button>
+        <input type="text" data-identifier="enter-name" placeholder="Digite seu nome">
+        <button data-identifier="start" onclick="entrarNaSala()">Entrar</button>
         <div class="mensagem-erro escondido"><p>Este nome já está em uso.<br>Tente outro nome!</p></div>
     </div>
 
@@ -35,20 +35,19 @@
             <input class="conteudo-mensagem" type="text" placeholder="Escreva aqui...">
             <p>Escolha um contato e a visibilidade</p>
         </div>
-        <ion-icon name="paper-plane-outline" onclick="mandarMensagem()"></ion-icon>
+        <ion-icon name="paper-plane-outline" data-identifier="send-message" onclick="mandarMensagem()"></ion-icon>
     </footer>
 
     <div class="fundo-menu escondido" onclick="esconderMenu()">
     </div>
     
     <div class="menu escondido">
-
             <div class="nav">
                 <h1>Escolha um contato</br>para enviar mensagem:</h1>
             </div>
 
             <div class="usuarios">
-                <div class="infos" onclick = "selecionar(this)">
+                <div class="infos" data-identifier="participant" onclick = "selecionar(this)">
                     <ion-icon name="people"></ion-icon>
                     <p>Todos</p>
                     <ion-icon class="check users escondido" name="checkmark"></ion-icon>
@@ -60,12 +59,12 @@
             </div>
 
             <div class="visibilidade">
-                <div class="infos" onclick = "selecionarVisibilidade(this)">
+                <div class="infos" data-identifier="visibility" onclick = "selecionarVisibilidade(this)">
                     <ion-icon name="lock-open"></ion-icon>
                     <p>Público</p>
                     <ion-icon class="check visible escondido" name="checkmark"></ion-icon>
                 </div>
-                <div class="infos" onclick = "selecionarVisibilidade(this)">
+                <div class="infos" data-identifier="visibility" onclick = "selecionarVisibilidade(this)">
                     <ion-icon name="lock-closed"></ion-icon>
                     <p>Reservadamente</p>
                     <ion-icon class="check visible escondido" name="checkmark"></ion-icon>

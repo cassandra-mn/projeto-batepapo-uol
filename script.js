@@ -77,7 +77,9 @@ function imprimirMensagens(dados) {
             mensagemPublica(mensagem, dados[i]);
         }
         else {
-            mensagemPrivada(mensagem, dados[i]);
+            if (dados[i].to === destinatario.to) {
+                mensagemPrivada(mensagem, dados[i]);
+            }
         }
     }
     const elementoScroll = document.querySelector(".container").lastElementChild;
@@ -86,7 +88,7 @@ function imprimirMensagens(dados) {
 
 function mensagemStatus(mensagem, dados) {
     mensagem.innerHTML += `
-    <div class="mensagem fundo-cinza">
+    <div class="mensagem fundo-cinza" data-identifier="message">
         <p class="horario">${dados.time}</p>
         <p class="nome">${dados.from}</p>
         <p class="acao">${dados.text}</p>
@@ -95,7 +97,7 @@ function mensagemStatus(mensagem, dados) {
 
 function mensagemPublica(mensagem, dados) {
     mensagem.innerHTML += `
-    <div class="mensagem fundo-branco">
+    <div class="mensagem fundo-branco" data-identifier="message">
         <p class="horario">${dados.time}</p>
         <p class="nome">${dados.from}</p>
         <p class="para"> para <strong>${dados.to}</strong></p>
@@ -105,7 +107,7 @@ function mensagemPublica(mensagem, dados) {
 
 function mensagemPrivada(mensagem, dados) {
     mensagem.innerHTML += `
-    <div class="mensagem fundo-rosa">
+    <div class="mensagem fundo-rosa" data-identifier="message">
         <p class="horario">${dados.time}</p>
         <p class="nome">${dados.from}</p>
         <p class="para"> reservadamente para <strong>${dados.to}</strong></p>
@@ -130,7 +132,7 @@ function listarUsuarios(resposta) {
         let usuario = users[i].name;
         console.log(usuario);
         usuarios.innerHTML += `
-        <div class="infos" onclick = "selecionar(this)">
+        <div class="infos" data-identifier="participant" onclick = "selecionar(this)">
             <ion-icon name="person-circle"></ion-icon>
             <p>${usuario}</p>
             <ion-icon class="check users escondido" name="checkmark"></ion-icon>
@@ -196,6 +198,7 @@ function mensagemInput(resposta) {
 }
 
 function erroNaMensagem(erro) {
+    alert("Usuário desconectado");
     window.location.reload();
 }
 
